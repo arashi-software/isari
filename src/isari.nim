@@ -1,5 +1,5 @@
 import prologue
-import prologue/middlewares/staticfile
+#import prologue/middlewares/staticfile
 
 import routes
 
@@ -8,11 +8,10 @@ let
   settings = newSettings(appName = env.getOrDefault("NAME", "Isari"),
                          debug = env.getOrDefault("DEBUG", true),
                          port = Port(env.getOrDefault("PORT", 1313)),
-                         secretKey = env.getOrDefault("SECRET_KEY", "")
     )
 
 var app = newApp(settings = settings)
-app.use(staticFileMiddleware(env.get("STATIC_DIR")))
+#app.use(staticFileMiddleware(env.get("STATIC_DIR")))
 app.addRoute(routes.urlPatterns, "")
 app.run()
 
