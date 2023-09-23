@@ -4,10 +4,10 @@ WORKDIR .
 
 COPY . .
 
-RUN nimble install -d -y --verbose
+RUN nimble build -y --verbose
 
 ENV PORT=1313
 
 EXPOSE 1313
 
-CMD ["nimble", "build", "--verbose"]
+CMD ["./bin/isari"]
