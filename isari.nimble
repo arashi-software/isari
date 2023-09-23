@@ -11,4 +11,4 @@ bin           = @["isari"]
 
 # Dependencies
 
-requires "nim >= 1.4.8", "jester"
+requires "nim >= 1.4.8", "prologue"

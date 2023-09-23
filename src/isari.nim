@@ -1,5 +1,18 @@
-# This is just an example to get you started. A typical binary package
-# uses this file as the main entry point of the application.
+import prologue
+import prologue/middlewares/staticfile
 
-when isMainModule:
-  echo("Hello, World!")
+import routes
+
+let
+  env = loadPrologueEnv(".env")
+  settings = newSettings(appName = env.getOrDefault("NAME", "Isari"),
+                         debug = env.getOrDefault("DEBUG", true),
+                         port = Port(env.getOrDefault("PORT", 1313)),
+                         secretKey = env.getOrDefault("SECRET_KEY", "")
+    )
+
+var app = newApp(settings = settings)
+app.use(staticFileMiddleware(env.get("STATIC_DIR")))
+app.addRoute(routes.urlPatterns, "")
+app.run()
+
